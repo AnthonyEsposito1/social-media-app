@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    
+    <div class="profile-header">
+        <h1>{{ user.username }}</h1>
+		
+        <p>
+		{% if user.posts.count() %} 
+			{{ user.posts.count() }} Posts. 
+		{% endif %}
+		
+		{% if pic|length %} 
+			{{pic|length}} Uploads. 
+		{% endif %}
+		
+		{% if group|length %} 
+			Part of {{group|length}} Groups.  
+		{% endif %} 
+		
+		{% if score %} 
+			Score = {{score[0][0]}} 
+		{% endif %}
+		</p>
+		
+		{% if group %}
+			Groups:
+			{% for x in group %}
+				 {{x.group_name}},
+			{% endfor %}
+		{% endif %}
+
+    </div>
+</div>
+<h3>Posts by {{ user.username }}</h3>
+{% include '_posts.html' %}
+<br/>
+<br/>
+<div>
+
+<h3>Images Uploaded by {{ user.username }}</h3>
+<br/>
+	{% for x in pic %}
+		<h4>Image ID: {{x.id}}</h4>
+        <img src="../{{x.pic_location}}" style="width:500px;height:500px;">
+    {% endfor %}
+</div>
+{% endblock %}

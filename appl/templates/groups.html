@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Groups{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+</div>
+<div>
+    {{ wtf.quick_form(form) }}
+	<br/>
+</div>
+<ul class="posts">
+    {% for x in group %}
+    <li class="post">
+        <div class="post-content">
+			<a href="group/{{ x.group_name }}">
+				<div class="post-body">
+					{{ x.group_name }} {{list3[loop.index-1]}}
+				</div>
+				
+			</a>
+			{% if list3[loop.index-1] == "(Following)" %}
+				<a href="group/remove/{{ x.group_name }}">
+					<div class="post-body">
+						Unfollow
+					</div>
+				</a>
+			{% endif %}	
+			
+		</div>
+	</li>
+	<br/>
+	<br/>
+	
+    {% endfor %}
+	
+<!--	
+		{% for y in list2 %}
+			{% if y in list1 %}
+				True
+			{% else %}
+				False
+			{% endif %}
+		{% endfor %}
+-->
+</ul>
+{% endblock %}

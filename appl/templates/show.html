@@ -1,0 +1,36 @@
+<style>
+.form-group{
+width: 13%;
+}
+</style>
+{% extends "base.html" %}
+{% block title %}Show{% endblock %}
+{% block page_content %}
+
+	{% for x in os.listdir(path) %}
+	<form method=POST>
+		<a href="test2/{{x}}"><img src="static/img/{{x}}" style="width:450px;height:450px;padding=50px"></a>
+		<div class="form-group">
+		  <label for="sel{{x}}">Rate:</label>
+		  <select class="form-control" id="sel{{x}}">
+			<option>0</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+		  </select>
+		</div>
+	</form>
+	<button id="sel{{x}}" onclick="myFunction(this.id)">Click me</button>
+	
+<script>
+	function myFunction(clicked_id) {
+    var x = document.getElementById(clicked_id).value;
+	console.log(x)
+}
+</script>	
+
+    {% endfor %}
+{% endblock %}
+
+

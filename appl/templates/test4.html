@@ -1,0 +1,68 @@
+<style>
+.upvote {
+  display: inline-block;
+  overflow: hidden;
+  width: 124px;
+  height: 77px;
+  cursor: pointer;
+  background: url('http://localhost:5006/static/buttons3.1.png') 0 0 no-repeat;
+  background-position: 0 -67px;
+  -webkit-user-select: none;
+} 
+
+.upvote.on {
+  background-position: 0 -10px;
+  -webkit-user-select: none;
+}
+
+
+.downvote {	
+  display: inline-block;
+  overflow: hidden;
+  width: 140px;
+  height: 85px;
+  cursor: pointer;
+  background: url('http://localhost:5006/static/buttons3.1.png') 0 0 no-repeat;
+  background-position: -128 -95px;
+  -webkit-user-select: none;
+} 
+
+.downvote.on {
+  background-position: -127 -7px;
+  -webkit-user-select: none;
+}
+
+
+</style>
+    
+<span class="upvote"></span><br>
+<span class="downvote"> </span> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+var state = 0;
+$('.upvote, .downvote').click
+(function () 
+  {
+   $(this).toggleClass('on');
+   if ($('.downvote').hasClass('on') && $('.upvote').hasClass('on')) 
+   {
+   $('.upvote').toggleClass('on');
+   $('.downvote').toggleClass('on');
+   }
+
+	if ($('.downvote').hasClass('on') && $('.upvote').hasClass('on') || !$('.downvote').hasClass('on') && !$('.upvote').hasClass('on')){
+	state =0
+	}else if ($('.downvote').hasClass('on')){
+	state =-1
+	}else if  ($('.upvote').hasClass('on')){
+	state = 1
+	}
+	console.log(state)
+	}
+);
+</script>
+
+
+
